@@ -1,0 +1,10 @@
+services:
+  my-express-app:
+    build:
+      context: .
+    image: my_app:latest
+    ports:
+      - 3333:3333
+    environment:
+      whoisthere: "incog"
+    container_name: "my-app-cont"
