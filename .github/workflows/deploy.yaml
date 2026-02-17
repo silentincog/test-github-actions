@@ -1,0 +1,26 @@
+name: Continuous Deployment of App
+on: 
+  push:
+    branches:
+      - main
+jobs:
+  Re-deploy-App:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code in the Ubuntu Runner
+        uses: actions/checkout@v6
+
+      - name: Start the ssh-agent in the runner
+        uses: webfactory/ssh-agent@v0.9.1
+        with: 
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+
+      - name: SSH into the server from the runner
+        run: |
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
+            cd ~/test-github-actions &&
+            git pull origin main &&
+            bun i &&
+            docker compose up -d --build
+          "
