@@ -25,6 +25,6 @@ jobs:
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
             cd ~/test-github-actions &&
             git pull origin main &&
-            bun i &&
+            ~/.bun/bin/bun i &&
             docker compose up -d --build
           "
