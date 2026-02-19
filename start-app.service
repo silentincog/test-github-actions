@@ -1,0 +1,14 @@
+[Unit]
+Description=Start Docker containers on boot
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/mnt/Aayush/WEB/githubActions/
+ExecStart=/usr/bin/docker compose up -d --build
+ExecStop=/usr/bin/docker compose down
+
+[Install]
+WantedBy=multi-user.target
