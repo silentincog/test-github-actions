@@ -23,8 +23,8 @@ jobs:
       - name: SSH into the server from the runner
         run: |
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
-            cd /test-github-actions &&
-            sudo git pull origin main &&
+            cd /home/${{secrets.SERVER_USER}}/test-github-actions &&
+            git pull origin main &&
             ~/.bun/bin/bun i &&
             docker compose up -d --build
           "
