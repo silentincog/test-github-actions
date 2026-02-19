@@ -8,4 +8,3 @@ services:
     environment:
       whoisthere: "incog"
     container_name: "my-app-cont"
-    restart: unless-stopped
